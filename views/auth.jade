@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  div.ui.container
+    div.ui.middle.aligned.center.aligned.grid
+      div.column
+        div.ui.divider.hidden
+        div.ui.divider.hidden
+        div.ui.divider.hidden
+        form.ui.huge.form.very.padded.compact.segment.blue
+          h1= title
+          div.field
+            input(type="text", name="email", id="email", placeholder="Email", value="")
+          div.field
+            input(type="password", name="pass", id="pass", placeholder="Password", value="")
+          div.field
+            button.ui.fluid.green.massive.button(type="submit") Sign In
