@@ -3,4 +3,15 @@ extends layout
 block content
   div.ui.container
     h1= title
-    p Welcome to #{title}
+    p Intrinsicly restore sustainable leadership
+    div.ui.items
+      each row in data
+          div.item
+            div.image
+              img(src="#{row.image}", width="250")
+            div.content
+              a.header= row.name
+              div.meta
+                span Description
+              div.description
+                p= row.desc

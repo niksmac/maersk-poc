@@ -4,6 +4,8 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var localStorage = require('localStorage');
+var crypto = require('crypto');
 
 var index = require('./routes/index');
 var auth = require('./routes/auth');
@@ -30,6 +32,21 @@ app.use('/auth', auth);
 app.use('/clients', clients);
 app.use('/partners', partners);
 app.use('/shipments', shipments);
+
+app.post('/login', function(request, response){
+    if (request.body.email == "demo@pegke.com" && request.body.pass == "123") {
+      localStorage.setItem("_session",crypto.createHash('md5').update(request.body.email).digest("hex"));
+      response.redirect("/clients");
+    } else {
+      response.redirect("/auth");
+    }
+});
+
+app.get('/logout', function(req, res, next) {
+  localStorage.removeItem('_session');
+  res.redirect("/auth");
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
