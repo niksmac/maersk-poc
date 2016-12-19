@@ -1,13 +1,14 @@
 var express = require('express');
 var router = express.Router();
 var localStorage = require('localStorage');
-var JsonDB = require('node-json-db');
+var obj = require("../dummy.json");
 
-/* GET users listing. */
 router.get('/', isAuthenticated, function(req, res, next) {
-  res.render('shipments', {
-    title: 'Shipments',
-    isloggedin: (localStorage.getItem("_session")  !== null) ? true : false });
+  res.render('shipment-new', {
+    title: 'Create new shipment',
+    isloggedin: (localStorage.getItem("_session")  !== null) ? true : false,
+    data: obj
+  });
 });
 
 function isAuthenticated(req, res, next) {

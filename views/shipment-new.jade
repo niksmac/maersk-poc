@@ -1,0 +1,34 @@
+extends layout
+
+block content
+  div.ui.container
+    h1= title
+    p Continually evolve principle-centered benefits
+    div.ui.segment
+      form.ui.form
+        div.ui.grid
+          div.four.wide.column.olive
+            h4.ui.dividing.header Partners
+            each row in data.partner
+              div.field
+                div.ui.checkbox
+                  input(type="checkbox", name="partners[]", value="#{row.id}")
+                  label #{row.name}
+          div.four.wide.column.blue
+            h4.ui.dividing.header Clients
+            each row in data.client
+              div.field
+                div.ui.checkbox
+                  input(type="checkbox", name="clients[]", value="#{row.id}")
+                  label #{row.name}
+          div.eight.wide.column
+            h4.ui.dividing.header Shipment Details
+            div.field
+              input(type="text", name="title", id="title", placeholder="Title", value="")
+            div.field
+              input(type="text", name="shipment_id", id="shipment_id", placeholder="Shipment ID", value="")
+            div.field
+              button.ui.fluid.green.massive.button(type="submit") Create Shipment
+
+
+
