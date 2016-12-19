@@ -13,12 +13,15 @@ var clients = require('./routes/clients');
 var partners = require('./routes/partners');
 var shipments = require('./routes/shipments');
 var shipment_new = require('./routes/shipment-new');
+var JsonDB = require('node-json-db');
+var db = new JsonDB("myDataBase", true, false);
 
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
+
 
 // uncomment after placing your favicon in /public
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -42,6 +45,11 @@ app.post('/login', function(request, response){
     } else {
       response.redirect("/auth");
     }
+});
+
+app.post('/shipment/create', function(request, response){
+  db.push("/test"+request.body.id,request.body);
+  response.redirect("/shipments");
 });
 
 app.get('/logout', function(req, res, next) {
