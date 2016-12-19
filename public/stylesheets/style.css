@@ -7,3 +7,4 @@ body>.grid{height:100%;}
 div.ui.very.relaxed.divided.list { text-align: left; }
 .fixed.bottom.menu { bottom: 0; top: auto;}
 .container.footer {font-size: 0.9rem !important; padding: 10px 0;}
+div.ui.label.right.floated { float: right !important}

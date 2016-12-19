@@ -6,7 +6,6 @@ var JsonDB = require('node-json-db');
 var db = new JsonDB("myDataBase", true, false);
 var data = db.getData("/");
 
-console.log(obj.partner[0]);
 /* GET users listing. */
 router.get('/', isAuthenticated, function(req, res, next) {
   res.render('shipments', {
@@ -14,6 +13,14 @@ router.get('/', isAuthenticated, function(req, res, next) {
     isloggedin: (localStorage.getItem("_session")  !== null) ? true : false,
     data: data,
     users: obj});
+});
+
+
+router.get('/:id', isAuthenticated, function(req, res, next) {
+  var shipid = req.params.id;
+  res.render('shipments-detail', {
+    title: 'Shipment Details',
+    isloggedin: (localStorage.getItem("_session")  !== null) ? true : false});
 });
 
 function isAuthenticated(req, res, next) {
