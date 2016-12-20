@@ -11,14 +11,14 @@ block content
       thead
         tr
           th #
-          th Partner(s)
-          th Client(s)
+          th Title
+          th Shipment ID
           th Action
       tbody
         each row in data
           tr
             td= row.id
-            td= row.partners
-            td= row.clients
+            td= row.title
+            td= row.shipment_id
             td
-              a.ui.button(href="#{row.id}") View
+              a.ui.button(href="/shipments/#{row.id}") View

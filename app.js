@@ -14,7 +14,7 @@ var partners = require('./routes/partners');
 var shipments = require('./routes/shipments');
 var shipment_new = require('./routes/shipment-new');
 var JsonDB = require('node-json-db');
-var db = new JsonDB("myDataBase", true, false);
+var db = new JsonDB("shipping", true, false);
 
 var app = express();
 
@@ -48,7 +48,7 @@ app.post('/login', function(request, response){
 });
 
 app.post('/shipment/create', function(request, response){
-  db.push("/test"+request.body.id,request.body);
+  db.push("/ship_" + request.body.id,request.body);
   response.redirect("/shipments");
 });
 

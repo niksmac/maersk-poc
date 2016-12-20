@@ -10,17 +10,23 @@ block content
           div.four.wide.column.olive
             h4.ui.dividing.header Partners
             each row in data.partner
-              div.field
-                div.ui.checkbox
-                  input(type="checkbox", name="partners", value="#{row.id}")
-                  label #{row.name}
+              div.fields
+                div.ten.wide.field
+                  div.ui.checkbox
+                    input(type="checkbox", name="partners", value="#{row.id}")
+                    label #{row.name}
+                div.six.wide.field
+                    input(type="text", name="partners_loyalty", id="partners_loyalty", placeholder="Loyalty", value="")
           div.four.wide.column.blue
             h4.ui.dividing.header Clients
             each row in data.client
-              div.field
-                div.ui.checkbox
-                  input(type="checkbox", name="clients", value="#{row.id}")
-                  label #{row.name}
+              div.fields
+                div.ten.wide.field
+                  div.ui.checkbox
+                    input(type="checkbox", name="clients", value="#{row.id}")
+                    label #{row.name}
+                div.six.wide.field
+                    input(type="text", name="clients_loyalty", id="clients_loyalty", placeholder="Loyalty", value="")
           div.eight.wide.column
             h4.ui.dividing.header Shipment Details
             div.field
@@ -28,7 +34,7 @@ block content
             div.field
               input(type="text", name="shipment_id", id="shipment_id", placeholder="Shipment ID", value="")
             div.field
-              input(type="hidden", name="id", id="id", value="2")
+              input(type="hidden", name="id", id="id", value="#{next_id}")
               button.ui.fluid.green.massive.button(type="submit") Create Shipment
 
 

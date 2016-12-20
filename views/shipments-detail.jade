@@ -8,22 +8,25 @@ block content
         div.ui.segment
           h2= "Partners"
           div.ui.large.feed
-            div.event
-              div.label
-                img(src="/images/nan.jpg")
-              div.content
-                div.summary= "Partner 1"
-                  div.ui.teal.big.circular.label.right.floated= "1"
-            div.event
-              div.label
-                img(src="/images/tom.jpg")
-              div.content
-                div.summary= "Partner 2"
-                  div.ui.teal.big.circular.label.right.floated= "1"
+            each row in data.partners
+              div.event
+                div.label
+                  img(src="#{users.partner[(parseInt(row) - 1)].image}")
+                div.content
+                  div.summary= users.partner[(parseInt(row) - 1)].name
+                    div.ui.teal.big.circular.label.right.floated= data.partners_loyalty[(parseInt(row) - 1)]
 
       div.six.wide.column
         div.ui.segment
           h2= "Clients"
+          div.ui.large.feed
+            each row in data.clients
+              div.event
+                div.label
+                  img(src="#{users.partner[(parseInt(row) - 1)].image}")
+                div.content
+                  div.summary= users.partner[(parseInt(row) - 1)].name
+                    div.ui.teal.big.circular.label.right.floated= data.clients_loyalty[(parseInt(row) - 1)]
       div.four.wide.column
         div.ui.segment
           h2= "User"
