@@ -3,11 +3,11 @@ var router = express.Router();
 var localStorage = require('localStorage');
 var obj = require("../dummy.json");
 var JsonDB = require('node-json-db');
-var db = new JsonDB("shipping", true, false);
-var data = db.getData("/");
 
 /* GET users listing. */
 router.get('/', isAuthenticated, nocache, function(req, res, next) {
+  var db = new JsonDB("shipping", true, false);
+  var data = db.getData("/");
   res.render('shipments', {
     title: 'Shipments',
     isloggedin: (localStorage.getItem("_session")  !== null) ? true : false,
@@ -17,6 +17,8 @@ router.get('/', isAuthenticated, nocache, function(req, res, next) {
 
 router.get('/:id', isAuthenticated, nocache, function(req, res, next) {
   var shipid = req.params.id;
+  var db = new JsonDB("shipping", true, false);
+  var data = db.getData("/");
   res.render('shipments-detail', {
     title: 'Shipment Details',
     isloggedin: (localStorage.getItem("_session")  !== null) ? true : false,

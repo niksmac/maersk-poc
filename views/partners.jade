@@ -6,12 +6,13 @@ block content
     p Intrinsicly restore sustainable leadership
     div.ui.items
       each row in data
-          div.item
-            div.image
-              img(src="#{row.image}", width="250")
-            div.content
-              a.header= row.name
-              div.meta
-                span Description
-              div.description
-                p= row.desc
+        div.item
+          div.image
+            img(src="#{row.image}", width="250")
+          div.content
+            a.header= row.name
+            div.meta
+              span Description
+            div.description
+              p= row.desc
+        div.ui.divider.horizontal= "."
