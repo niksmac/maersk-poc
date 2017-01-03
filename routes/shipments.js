@@ -15,6 +15,12 @@ router.get('/', isAuthenticated, nocache, function(req, res, next) {
   });
 });
 
+
+router.get('/all', function(req, res, next) {
+  res.render('all', {title: 'all'});
+});
+
+
 router.get('/:id', isAuthenticated, nocache, function(req, res, next) {
   var shipid = req.params.id;
   var db = new JsonDB("shipping", true, false);

@@ -39,12 +39,12 @@ app.use('/shipments', shipments);
 app.use('/shipment-new', shipment_new);
 
 app.post('/login', function(request, response){
-    if (request.body.email == "demo@pegke.com" && request.body.pass == "123") {
-      localStorage.setItem("_session",crypto.createHash('md5').update(request.body.email).digest("hex"));
-      response.redirect("/clients");
-    } else {
-      response.redirect("/auth");
-    }
+  if (request.body.email == "demo@pegke.com" && request.body.pass == "123") {
+    localStorage.setItem("_session",crypto.createHash('md5').update(request.body.email).digest("hex"));
+    response.redirect("/clients");
+  } else {
+    response.redirect("/auth");
+  }
 });
 
 app.post('/shipment/create', function(request, response){
