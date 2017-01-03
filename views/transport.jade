@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  div.ui.text.container
+    form.ui.form(id="transport-form")
+        div.field
+          label= "3PL Logistics Provider"
+          input(type="text", name="logisticsProvider", id="logisticsProvider", placeholder="3PL Logistics Provider", value="")
+

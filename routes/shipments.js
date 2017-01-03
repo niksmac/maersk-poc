@@ -20,6 +20,9 @@ router.get('/all', function(req, res, next) {
   res.render('all', {title: 'all'});
 });
 
+router.get('/transport', function(req, res, next) {
+  res.render('transport', {title: 'all'});
+});
 
 router.get('/:id', isAuthenticated, nocache, function(req, res, next) {
   var shipid = req.params.id;
