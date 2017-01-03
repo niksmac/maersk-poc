@@ -1,0 +1,11 @@
+extends layout
+
+block content
+  div.ui.text.container
+    form.ui.form(id="settings-form")
+        div.field
+          label= "Source"
+          input(type="text", name="source", id="source", placeholder="Source", value="")
+        div.field
+          label= "Destination"
+          input(type="text", name="destination", id="destination", placeholder="Destination", value="")
