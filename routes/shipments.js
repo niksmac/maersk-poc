@@ -6,7 +6,7 @@ var JsonDB = require('node-json-db');
 
 /* GET users listing. */
 router.get('/', isAuthenticated, nocache, function(req, res, next) {
-  var db = new JsonDB("shipping", true, false);
+  var db = new JsonDB("shipments", true, false);
   var data = db.getData("/");
   res.render('shipments', {
     title: 'Shipments',
@@ -16,12 +16,31 @@ router.get('/', isAuthenticated, nocache, function(req, res, next) {
 });
 
 
-router.get('/all', function(req, res, next) {
-  res.render('all', {title: 'all'});
+router.get('/create', function(req, res, next) {
+  res.render('all', {title: 'Create Shipment'});
+});
+
+router.post('/create', function(req, res, next) {
+  var db = new JsonDB("shipments", true, false);
+  delete req.body.submit;
+  db.push("/row"+req.body.id,req.body);
+  res.redirect("shipments");
+});
+
+router.get('/cargo', function(req, res, next) {
+  res.render('cargo');
 });
 
 router.get('/transport', function(req, res, next) {
-  res.render('transport', {title: 'all'});
+  res.render('transport', {title: 'Inter Modal Transport'});
+});
+
+router.post('/transport', function(req, res, next) {
+  var db = new JsonDB("settings", true, false);
+  console.log(req.body);
+  // delete req.body.submit;
+  // db.push("/",req.body);
+  // res.redirect("shipments/transport");
 });
 
 router.get('/:id', isAuthenticated, nocache, function(req, res, next) {

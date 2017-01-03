@@ -2,28 +2,28 @@ extends layout
 
 block content
   div.ui.text.container
-    form.ui.form(id="settings-form")
+    form.ui.form(id="settings-form" method="post")
       h4.ui.dividing.header Blockchain Points Allocation
       div.field
         label= "Source"
-        input(type="text", name="source", id="source", placeholder="Source", value="")
+        input(type="text", name="source", id="source", placeholder="Source", value="#{data.source}")
       div.field
         label= "Destination"
-        input(type="text", name="destination", id="destination", placeholder="Destination", value="")
+        input(type="text", name="destination", id="destination", placeholder="Destination", value="#{data.destination}")
       div.field
         label= "Inter Modal Transport Type"
-        input(type="text", name="intermodaltransporttype", id="intermodaltransporttype", placeholder="Inter Modal Transport Type", value="")
+        input(type="text", name="intermodaltransporttype", id="intermodaltransporttype", placeholder="Inter Modal Transport Type", value="#{data.intermodaltransporttype}")
       div.field
         label= "Cargo Category"
-        input(type="text", name="cargocategory", id="cargocategory", placeholder="Cargo Category", value="")
+        input(type="text", name="cargocategory", id="cargocategory", placeholder="Cargo Category", value="#{data.cargocategory}")
       div.field
         label= "Forward/Reverse Route"
-        input(type="text", name="forwardreverseroute", id="forwardreverseroute", placeholder="Forward/Reverse Route", value="")
+        input(type="text", name="forwardreverseroute", id="forwardreverseroute", placeholder="Forward/Reverse Route", value="#{data.forwardreverseroute}")
       div.field
         label= "Number of Cartons Shipped"
-        input(type="text", name="cartonsshipped", id="cartonsshipped", placeholder="Number of Cartons Shipped", value="")
+        input(type="text", name="cartonsshipped", id="cartonsshipped", placeholder="Number of Cartons Shipped", value="#{data.cartonsshipped}")
       div.field
         label= "Date"
-        input(type="text", name="date", id="date", placeholder="Date", value="")
-      input.ui.button(type="button", name="submit", id="submit",value="Submit")
+        input(type="text", name="date", id="date", placeholder="Date", value="#{data.date}")
+      input.ui.button.positive(type="submit", name="submit", id="submit",value="Submit")
 

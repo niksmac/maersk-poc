@@ -1,0 +1,21 @@
+div.ui.segment
+  div.two.fields
+    div.field
+      label= "Cargo Name"
+      input(type="text", name="cargoName", id="cargoName", placeholder="Cargo Name", value="")
+    div.field
+      label= "No: of Cartons"
+      input(type="text", name="noCartons", id="noCartons", placeholder="No: of Cartons", value="")
+  div.two.fields
+    div.field
+      label= "Source"
+      select.ui.fluid.dropdown(id="source", name="source")
+        -for(var i = 1; i < 10; i++){
+        option(value="Source#{i}") Source #{i}
+        -}
+    div.field
+      label= "Destination"
+      select.ui.fluid.dropdown(id="destination", name="destination")
+        -for(var i = 1; i < 10; i++){
+        option(value="Destination#{i}") Destination #{i}
+        -}

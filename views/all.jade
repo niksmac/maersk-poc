@@ -2,4 +2,15 @@ extends layout
 
 block content
   div.ui.text.container
-    include base
+    h2.ui.dividing.header= title
+    form.ui.form.equal.width(id="basefrm" method="post")
+      include base
+      div.cargo
+        h4.ui.header= "Cargo"
+        div.ui.divider
+        div.ui.cargoInner
+          include cargo
+        div.ui.divider
+        input(type="hidden", name="id", value="1")
+        input.ui.button.positive(type="button", name="addMore", id="addMore", value="Add More")
+        input.ui.button.positive(type="submit", name="submit", id="submit",value="Submit")
