@@ -13,6 +13,7 @@ var clients = require('./routes/clients');
 var partners = require('./routes/partners');
 var shipments = require('./routes/shipments');
 var settings = require('./routes/settings');
+var transport = require('./routes/transport');
 
 var JsonDB = require('node-json-db');
 var db = new JsonDB("shipping", true, false);
@@ -37,12 +38,13 @@ app.use('/auth', auth);
 app.use('/clients', clients);
 app.use('/partners', partners);
 app.use('/shipments', shipments);
+app.use('/transport', transport);
 app.use('/settings', settings);
 
 app.post('/login', function(request, response){
   if (request.body.email == "demo@pegke.com" && request.body.pass == "123") {
     localStorage.setItem("_session",crypto.createHash('md5').update(request.body.email).digest("hex"));
-    response.redirect("/clients");
+    response.redirect("/shipments");
   } else {
     response.redirect("/auth");
   }

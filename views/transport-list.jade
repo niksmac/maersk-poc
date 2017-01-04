@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div.ui.container
+    h1= title
+    p Completely disintermediate market-driven
+    console.log(data)
+    div.ui.divider
+    a.ui.basic.button(href="/transport/create") Add New
+    table.ui.celled.table
+      thead
+        tr
+          th #
+          th Shipper ID
+          th Shipper Name
+          th Client ID
+          th Client Name
+          th Action
+      tbody
+        each row in data
+          tr
+            td= row.id
+            td= row.shipperId
+            td= row.shipperName
+            td= row.clientId
+            td= row.clientName
+            td
+              a.ui.button(href="/shipments/#{row.id}") View

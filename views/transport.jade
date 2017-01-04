@@ -58,5 +58,7 @@ block content
           input(type="text", name="forwardreverseroute", id="forwardreverseroute", placeholder="Forward/Reverse Route", value="")
         div.field
           label= "Blockchain Points"
+          input(type="hidden", name="id", value="1")
+          input(type="hidden", name="shipid", value="#{data.shipid}")
           input(type="text", name="blockchainpoints", id="blockchainpoints", placeholder="Blockchain Points", value="")
         input.ui.button.positive(type="submit", name="submit", id="submit",value="Submit")

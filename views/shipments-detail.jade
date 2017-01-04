@@ -3,36 +3,62 @@ extends layout
 block content
   div.ui.container
     h1= title
-    div.ui.grid
-      div.six.wide.column
-        div.ui.segment
-          h2= "Partners"
-          div.ui.large.feed
-            each row in data.partners
-              div.event
-                div.label
-                  img(src="#{users.partner[(parseInt(row) - 1)].image}")
-                div.content
-                  div.summary= users.partner[(parseInt(row) - 1)].name
-                    div.ui.teal.big.circular.label.right.floated= data.partners_loyalty[(parseInt(row) - 1)]
 
-      div.six.wide.column
-        div.ui.segment
-          h2= "Clients"
-          div.ui.large.feed
-            each row in data.clients
-              div.event
-                div.label
-                  img(src="#{users.partner[(parseInt(row) - 1)].image}")
-                div.content
-                  div.summary= users.partner[(parseInt(row) - 1)].name
-                    div.ui.teal.big.circular.label.right.floated= data.clients_loyalty[(parseInt(row) - 1)]
-      div.four.wide.column
-        div.ui.segment
-          h2= "User"
+    table.ui.definition.table
+      tbody
+        tr
+          td= "Shipper Name"
+          td= data.shipperName
+        tr
+          td= "Shipper ID"
+          td= data.shipperId
+        tr
+          td= "Client Name"
+          td= data.clientName
+        tr
+          td= "Client ID"
+          td= data.clientId
+
+    table.ui.definition.table
+      thead
+        tr
+          th
+          th Number of Cartons
+          th Source
+          th Destination
+      tbody
+        each val, key in data.cargoName
+          tr
+            td= val
+            td= data.noCartons[key]
+            td= data.source[key]
+            td= data.destination[key]
 
     div.ui.segment
-      h3= "Actions"
-      button.ui.green.button(type="submit") Confirm Delivery
-      button.ui.red.button(type="submit") Cancel
-      button.ui.yellow.button(type="submit") Penalty
+      a.ui.green.button(href="transport/"+data.id+"/create") + 3PL Logistics Provider
+    table.ui.definition.table
+      thead
+        tr
+          th
+          th 3PL Logistics Provider
+          th Cargo Item ID
+          th Blockchain Points
+      tbody
+        each val, key in data.transport
+          tr
+            td= val.logisticsProvider
+            td= val.logisticsProviderid
+            td= val.cargoitemid
+            td= val.blockchainpoints
+
+    table.ui.definition.table
+      thead
+        tr
+          th Route
+          th Gained
+          th Missed
+          th Encashed
+      </thead>
+
+
+
