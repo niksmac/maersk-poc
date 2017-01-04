@@ -27,46 +27,49 @@ block content
           th Source
           th Destination
       tbody
-        each val, key in data.cargoName
-          tr
-            td= val
-            td= data.noCartons[key]
-            td= data.source[key]
-            td= data.destination[key]
+        if(typeof data.cargoName != 'undefined')
+          each val, key in data.cargoName
+            tr
+              td= val
+              td= data.noCartons[key]
+              td= data.source[key]
+              td= data.destination[key]
 
     div.ui.segment
       a.ui.green.button(href="transport/"+data.id+"/create") + 3PL Logistics Provider
-    table.ui.definition.table
-      thead
-        tr
-          th
-          th 3PL Logistics Provider
-          th Cargo Item ID
-          th Blockchain Points
-      tbody
-        each val, key in data.transport
+    if(typeof data.transport != 'undefined')
+      table.ui.definition.table
+        thead
           tr
-            td= val.logisticsProvider
-            td= val.logisticsProviderid
-            td= val.cargoitemid
-            td= val.blockchainpoints
+            th
+            th 3PL Logistics Provider
+            th Cargo Item ID
+            th Blockchain Points
+        tbody
+            each val, key in data.transport
+              tr
+                td= val.logisticsProvider
+                td= val.logisticsProviderid
+                td= val.cargoitemid
+                td= val.blockchainpoints
 
-    h4 Block Chain View  - Shipper Summary
+    h3 Block Chain View  - Shipper Summary
     div.ui.divider
-    table.ui.table
-      thead
-        tr
-          th 3PL Logistics Provider
-          th Gained
-          th Missed
-          th Encashed
-      tbody
-        each val, key in data.transport
+    if(typeof data.transport != 'undefined')
+      table.ui.table
+        thead
           tr
-            td= val.logisticsProvider
-            td= Math.floor(Math.random() * (15 - 1300) + 1300)
-            td= Math.floor(Math.random() * (15 - 1300) + 1300)
-            td= Math.floor(Math.random() * (15 - 1300) + 1300)
+            th 3PL Logistics Provider
+            th Gained
+            th Missed
+            th Encashed
+        tbody
+            each val, key in data.transport
+              tr
+                td= val.logisticsProvider
+                td= Math.floor(Math.random() * (15 - 1300) + 1300)
+                td= Math.floor(Math.random() * (15 - 1300) + 1300)
+                td= Math.floor(Math.random() * (15 - 1300) + 1300)
 
     table.ui.definition.table
       thead
