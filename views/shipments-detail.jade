@@ -51,14 +51,51 @@ block content
             td= val.cargoitemid
             td= val.blockchainpoints
 
-    table.ui.definition.table
+    h4 Block Chain View  - Shipper Summary
+    div.ui.divider
+    table.ui.table
       thead
         tr
-          th Route
+          th 3PL Logistics Provider
           th Gained
           th Missed
           th Encashed
-      </thead>
+      tbody
+        each val, key in data.transport
+          tr
+            td= val.logisticsProvider
+            td= Math.floor(Math.random() * (15 - 1300) + 1300)
+            td= Math.floor(Math.random() * (15 - 1300) + 1300)
+            td= Math.floor(Math.random() * (15 - 1300) + 1300)
+
+    table.ui.definition.table
+      thead
+        tr
+          th
+          th Gained
+          th Missed
+          th Encashed
+      tbody
+        tr
+          td Sea
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+        tr
+          td Rail
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+        tr
+          td Road
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+        tr
+          td Inland waterways
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
+          td= Math.floor(Math.random() * (15 - 1300) + 1300)
 
 
 
