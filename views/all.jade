@@ -1,16 +1,42 @@
 extends layout
 
 block content
-  div.ui.text.container
-    h2.ui.dividing.header= title
+  div.ui.container
+    h1= title
+    div.ui.divider
+
     form.ui.form.equal.width(id="basefrm" method="post")
-      include base
-      div.cargo
-        h4.ui.header= "Cargo"
-        div.ui.divider
-        div.ui.cargoInner
-          include cargo
-        div.ui.divider
-        input(type="hidden", name="id", value="2")
-        input.ui.button.positive(type="button", name="addMore", id="addMore", value="Add More")
-        input.ui.button.positive(type="submit", name="submit", id="submit",value="Submit")
+      div.ui.grid
+        div.four.wide.column
+          div.fluid.ui.vertical.steps
+            div.step.active(data-tab="first")
+              i.truck.icon
+              div.content
+                div.title Shiping
+                div.description Details of shipment
+            div.step(data-tab="second")
+              i.cube.icon
+              div.content
+                div.title Cargo
+                div.description Cargo Details
+            div.step(data-tab='third')
+              i.pin.icon
+              div.content
+                div.title 3LP Points
+                div.description 3LP Point Details
+          input(type="hidden", name="id", value="#{autoKey}")
+          input.fluid.ui.button.positive(type="submit", name="submit", id="submit",value="Save")
+
+        div.twelve.wide.column
+            div.ui.attached.tab.active(data-tab="first")
+              include base
+            div.ui.attached.tab(data-tab="second")
+              div.cargo
+                div.ui.cargoInner
+                  include cargo
+              div.ui.divider
+              input.ui.button.basic(type="button", name="addMore", id="addMore", value="Add More")
+            div.ui.attached.tab(data-tab='third')
+              p Testing
+        div.sixteen.wide.column
+

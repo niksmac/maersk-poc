@@ -27,18 +27,30 @@ router.get('/transport/:id/create', function(req, res, next) {
 router.post('/transport/:id/create', function(req, res, next) {
   var db = new JsonDB("shipments", true, false);
   delete req.body.submit;
-  db.push("/row"+req.body.shipid+"/transport[]",req.body);
+  db.push("/row["+req.body.shipid+"]/transport[]",req.body);
   res.redirect("/shipments/"+req.body.shipid);
 });
 
 router.get('/create', function(req, res, next) {
-  res.render('all', {title: 'Create Shipment'});
+  var db = new JsonDB("shipments", true, false);
+  var auto_increment = 1;
+  try {
+    var data = db.getData("/row[-1]");
+    auto_increment = Number(data.id) + 1;
+  } catch(error) {
+  }
+
+  res.render('all', {
+    title: 'Create Shipment',
+    isloggedin: (localStorage.getItem("_session")  !== null) ? true : false,
+    autoKey: auto_increment
+  });
 });
 
 router.post('/create', function(req, res, next) {
   var db = new JsonDB("shipments", true, false);
   delete req.body.submit;
-  db.push("/row"+req.body.id,req.body);
+  db.push("/row[]",req.body);
   res.redirect("/shipments");
 });
 
@@ -46,14 +58,22 @@ router.get('/cargo', function(req, res, next) {
   res.render('cargo');
 });
 
+router.get('/clear', function(req, res, next) {
+  var db = new JsonDB("shipments", true, false);
+  db.delete("/");
+  res.redirect("/shipments");
+});
+
 router.get('/:id', isAuthenticated, nocache, function(req, res, next) {
   var shipid = req.params.id;
+  var dbPosition = (shipid - 1);
   var db = new JsonDB("shipments", true, false);
-  var data = db.getData("/");
+  var data = db.getData("/row["+dbPosition+"]");
+  console.log(data);
   res.render('shipments-detail', {
     title: 'Shipment Details',
     isloggedin: (localStorage.getItem("_session")  !== null) ? true : false,
-    data: data["row"+shipid],
+    data: data,
     users: obj
   });
 });
