@@ -1,0 +1,64 @@
+extends layout
+
+block content
+  div.ui.text.container
+    h2.ui.dividing.header= title
+    form.ui.form(id="transport-form" method="post")
+        div.two.fields
+          div.field
+            label= "3PL Logistics Provider"
+            input(type="text", name="logisticsProvider", id="logisticsProvider", placeholder="3PL Logistics Provider", value="")
+          div.field
+            label= "3PL Logistics Provider ID"
+            input(type="text", name="logisticsProviderid", id="logisticsProviderid", placeholder="3PL Logistics Provider ID", value="")
+        div.field
+          label= "Inter Modal Transport Type"
+          input(type="text", name="intermodaltransporttype", id="intermodaltransporttype", placeholder="Inter Modal Transport Type", value="")
+        div.two.fields
+          div.field
+            label= "Source"
+            select.ui.fluid.dropdown(id="source", name="source")
+              -for(var i = 1; i < 10; i++){
+              option(value="Source#{i}") Source #{i}
+              -}
+          div.field
+            label= "Destination"
+            select.ui.fluid.dropdown(id="destination", name="destination")
+              -for(var i = 1; i < 10; i++){
+              option(value="Destination#{i}") Destination #{i}
+              -}
+        div.two.fields
+          div.field.fluid
+            label= "Start Date"
+            input(type="date", name="startdate", id="startdate", placeholder="Start Date", value="")
+          div.field
+            label= "End Date"
+            input(type="date", name="enddate", id="enddate", placeholder="End Date", value="")
+        div.field
+          label= "Container ID"
+          input(type="text", name="container", id="container", placeholder="Container ID", value="")
+        div.field
+          label= "Cargo Category"
+          select.ui.fluid.dropdown(id="cargoCategory", name="cargoCategory")
+              -for(var i = 1; i < 3; i++){
+              option(value="Category#{i}") Category #{i}
+              -}
+        div.two.fields
+          div.field
+            label= "Cargo Item ID"
+            input(type="text", name="cargoitemid", id="cargoitemid", placeholder="Cargo Item ID", value="")
+          div.field
+            label= "Cargo Item"
+            input(type="text", name="cargoitem", id="cargoitem", placeholder="Cargo Item", value="")
+        div.field
+          label= "Carton Nos"
+          input(type="text", name="cartonnos", id="cartonons", placeholder="Carton Nos", value="")
+        div.field
+          label= "Forward/Reverse Route"
+          input(type="text", name="forwardreverseroute", id="forwardreverseroute", placeholder="Forward/Reverse Route", value="")
+        div.field
+          label= "Blockchain Points"
+          input(type="hidden", name="id", value="1")
+          input(type="hidden", name="shipid", value="#{data.shipid}")
+          input(type="text", name="blockchainpoints", id="blockchainpoints", placeholder="Blockchain Points", value="")
+        input.ui.button.positive(type="submit", name="submit", id="submit",value="Submit")

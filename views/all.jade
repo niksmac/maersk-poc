@@ -19,11 +19,6 @@ block content
               div.content
                 div.title Cargo
                 div.description Cargo Details
-            div.step(data-tab='third')
-              i.pin.icon
-              div.content
-                div.title 3LP Points
-                div.description 3LP Point Details
           input(type="hidden", name="id", value="#{autoKey}")
           input.fluid.ui.button.positive(type="submit", name="submit", id="submit",value="Save")
 
@@ -36,7 +31,5 @@ block content
                   include cargo
               div.ui.divider
               input.ui.button.basic(type="button", name="addMore", id="addMore", value="Add More")
-            div.ui.attached.tab(data-tab='third')
-              p Testing
         div.sixteen.wide.column
 

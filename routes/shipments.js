@@ -8,6 +8,7 @@ var JsonDB = require('node-json-db');
 router.get('/', isAuthenticated, nocache, function(req, res, next) {
   var db = new JsonDB("shipments", true, false);
   var data = db.getData("/");
+  console.log(data);
   res.render('shipments', {
     title: 'Shipments',
     isloggedin: (localStorage.getItem("_session")  !== null) ? true : false,
@@ -26,8 +27,10 @@ router.get('/transport/:id/create', function(req, res, next) {
 
 router.post('/transport/:id/create', function(req, res, next) {
   var db = new JsonDB("shipments", true, false);
+  var shipmentrow = Number(req.body.shipid) - 1;
+  console.log(shipmentrow);
   delete req.body.submit;
-  db.push("/row["+req.body.shipid+"]/transport[]",req.body);
+  db.push("/row["+shipmentrow+"]/transport[]",req.body);
   res.redirect("/shipments/"+req.body.shipid);
 });
 
