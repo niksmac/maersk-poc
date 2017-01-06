@@ -16,7 +16,15 @@ router.get('/', isAuthenticated, nocache, function(req, res, next) {
   });
 });
 
-router.get('/transport/:id/create', function(req, res, next) {
+router.get('/summary', isAuthenticated, nocache, function(req, res, next) {
+
+  res.render('shipments', {
+    title: 'Block Chain View - Shipper Summary',
+    isloggedin: (localStorage.getItem("_session")  !== null) ? true : false
+  });
+});
+
+router.get('/transport/:id/create', isAuthenticated, nocache, function(req, res, next) {
   var shipid = req.params.id;
   res.render('transport', {
     title: 'Inter Modal Transport',
@@ -34,7 +42,7 @@ router.post('/transport/:id/create', function(req, res, next) {
   res.redirect("/shipments/"+req.body.shipid);
 });
 
-router.get('/create', function(req, res, next) {
+router.get('/create', isAuthenticated, nocache, function(req, res, next) {
   var db = new JsonDB("shipments", true, false);
   var auto_increment = 1;
   try {
@@ -57,11 +65,11 @@ router.post('/create', function(req, res, next) {
   res.redirect("/shipments");
 });
 
-router.get('/cargo', function(req, res, next) {
+router.get('/cargo', isAuthenticated, nocache, function(req, res, next) {
   res.render('cargo');
 });
 
-router.get('/clear', function(req, res, next) {
+router.get('/clear', isAuthenticated, nocache, function(req, res, next) {
   var db = new JsonDB("shipments", true, false);
   db.delete("/");
   res.redirect("/shipments");
@@ -94,6 +102,25 @@ function isAuthenticated(req, res, next) {
         return next();
 
     res.redirect('/auth');
+}
+
+function randomNumbers(){
+  var arr = [],
+    track = [],
+    min = 100,
+    max = 999999,
+    qty = 1000,
+    ii = 0,
+    rnd;
+
+  while (ii < qty) {
+      rnd = Math.floor(Math.random() * (max - min + 1)) + min;
+      if (!track[rnd]) {
+          arr[ii] = track[rnd] = rnd;
+          ii += 1;
+      }
+  }
+  return arr;
 }
 
 module.exports = router;

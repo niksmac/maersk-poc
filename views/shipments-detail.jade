@@ -2,63 +2,68 @@ extends layout
 
 block content
   div.ui.container
-    h1= title
 
-    table.ui.definition.table
-      tbody
-        tr
-          td= "Shipper Name"
-          td= data.shipperName
-        tr
-          td= "Shipper ID"
-          td= data.shipperId
-        tr
-          td= "Client Name"
-          td= data.clientName
-        tr
-          td= "Client ID"
-          td= data.clientId
-
-    if(typeof data.cargoName != 'undefined')
-      table.ui.definition.table
-        thead
-          tr
-            th
-            th Number of Cartons
-            th Source
-            th Destination
-        tbody
-          if(typeof data.cargoName != 'string')
-            each val, key in data.cargoName
+    div.ui.grid
+      div.eight.wide.column
+        div.ui.segment
+          h3= title
+          table.ui.definition.table
+            tbody
               tr
-                td= val
-                td= data.noCartons[key]
-                td= data.source[key]
-                td= data.destination[key]
-          else
-            tr
-                td= data.cargoName
-                td= data.noCartons
-                td= data.source
-                td= data.destination
+                td= "Shipper Name"
+                td= data.shipperName
+              tr
+                td= "Shipper ID"
+                td= data.shipperId
+              tr
+                td= "Client Name"
+                td= data.clientName
+              tr
+                td= "Client ID"
+                td= data.clientId
+      div.eight.wide.column
+        if(typeof data.cargoName != 'undefined')
+          div.ui.segment
+            h3= "Cargo"
+            table.ui.table
+              thead
+                tr
+                  th Name
+                  th Number of Cartons
+                  th Source
+                  th Destination
+              tbody
+                if(typeof data.cargoName != 'string')
+                  each val, key in data.cargoName
+                    tr
+                      td= val
+                      td= data.noCartons[key]
+                      td= data.source[key]
+                      td= data.destination[key]
+                else
+                  tr
+                      td= data.cargoName
+                      td= data.noCartons
+                      td= data.source
+                      td= data.destination
 
     div.ui.segment
       a.ui.green.button(href="transport/"+data.id+"/create") + 3PL Logistics Provider
-    if(typeof data.transport != 'undefined')
-      table.ui.definition.table
-        thead
-          tr
-            th
-            th 3PL Logistics Provider
-            th Cargo Item ID
-            th Blockchain Points
-        tbody
-            each val, key in data.transport
-              tr
-                td= val.logisticsProvider
-                td= val.logisticsProviderid
-                td= val.cargoitemid
-                td= val.blockchainpoints
+      if(typeof data.transport != 'undefined')
+        table.ui.table
+          thead
+            tr
+              th Name
+              th ID
+              th Cargo Item ID
+              th Blockchain Points
+          tbody
+              each val, key in data.transport
+                tr
+                  td= val.logisticsProvider
+                  td= val.logisticsProviderid
+                  td= val.cargoitemid
+                  td= val.blockchainpoints
 
     h3 Block Chain View  - Shipper Summary
     div.ui.divider
